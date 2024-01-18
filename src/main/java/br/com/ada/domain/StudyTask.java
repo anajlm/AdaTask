@@ -1,4 +1,4 @@
-package br.com.ada.Domain;
+package br.com.ada.domain;
 
 public class StudyTask extends TaskWithDeadline {
 

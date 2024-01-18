@@ -1,6 +1,6 @@
-package br.com.ada.Repository;
+package br.com.ada.repository;
 
-import br.com.ada.Domain.BaseTask;
+import br.com.ada.domain.BaseTask;
 
 public interface TaskRepository<T extends BaseTask, U> {
     void createTask(T task);

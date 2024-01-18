@@ -1,7 +1,7 @@
-package br.com.ada.Service;
+package br.com.ada.service;
 
-import br.com.ada.Domain.BaseTask;
-import br.com.ada.Repository.TaskRepository;
+import br.com.ada.domain.BaseTask;
+import br.com.ada.repository.TaskRepository;
 
 public class Service<T extends BaseTask> {
 
@@ -15,24 +15,21 @@ public class Service<T extends BaseTask> {
         taskRepository.createTask(task);
     }
 
-    void editTask() {
-        taskRepository.updateTask(T);
+    void editTask(T task) {
+        taskRepository.updateTask(task);
     }
 
     void deleteTask(U id) {
         taskRepository.deleteTask(id);
     }
     void viewTask(T task){
-        task.showTask();
+        task.displayTaskDetails();
     }
 
 
-    getAllTasks(){
-        taskRepository.getAll();
+    public <T> List<T> getAllTasks(){
+        taskRepository.getAllTasks();
     }
-    getWorkTasks();
-    getStudyTasks();
-    getPersonalTasks();
 
     sortTasksFromAToZ();
     sortTasksFromOldestToNewest();

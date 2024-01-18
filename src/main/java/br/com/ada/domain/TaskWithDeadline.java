@@ -1,4 +1,4 @@
-package br.com.ada.Domain;
+package br.com.ada.domain;
 
 import java.util.Date;
 
