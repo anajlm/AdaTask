@@ -31,11 +31,11 @@ public abstract class BaseTask {
         this.description = description;
     }
 
-    public Integer getPriority() {
+    public Priority getPriority() {
         return priority;
     }
 
-    public void setPriority(Integer priority) {
+    public void setPriority(Priority priority) {
         this.priority = priority;
     }
 
@@ -48,6 +48,7 @@ public abstract class BaseTask {
     }
 
 
-
+    public abstract void previewTask();
+    public abstract void displayTaskDetails();
 
 }

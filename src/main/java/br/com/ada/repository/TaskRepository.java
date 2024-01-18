@@ -2,9 +2,12 @@ package br.com.ada.repository;
 
 import br.com.ada.domain.BaseTask;
 
-public interface TaskRepository<T extends BaseTask, U> {
+import java.util.List;
+
+public interface TaskRepository<T extends BaseTask> {
     void createTask(T task);
-    T readTask(U id);
+    T getTaskById(Integer id);
+    List<T> getAllTasks();
     void updateTask(T task);
-    void deleteTask(U id);
+    void deleteTask(Integer id);
 }

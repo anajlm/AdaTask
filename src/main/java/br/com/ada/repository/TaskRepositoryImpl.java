@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.ada.domain.BaseTask;
 
-public class TaskRepositoryImpl<T extends BaseTask> implements TaskRepository<T, Integer> {
+public class TaskRepositoryImpl<T extends BaseTask> implements TaskRepository<T> {
 
     private List<T> taskList;
 
@@ -19,8 +19,13 @@ public class TaskRepositoryImpl<T extends BaseTask> implements TaskRepository<T,
     }
 
     @Override
-    public T readTask(Integer id) {
-        return null;
+    public T getTaskById(Integer id) {
+        return this.taskList.get(id);
+    }
+
+    @Override
+    public List<T> getAllTasks() {
+        return this.taskList;
     }
 
     @Override

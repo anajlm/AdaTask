@@ -1,6 +1,14 @@
 package br.com.ada.domain;
 
-public class StudyTask extends TaskWithDeadline {
+public class StudyTask extends BaseTask {
 
-    public final String TASK_COLOR = "\u001B[34m";
+    @Override
+    public void previewTask() {
+        System.out.println(this.getPriority().getTextColor() + "STUDY: " + this.getId() + " " + this.getDescription() + " " + this.getPriority());
+    }
+
+    @Override
+    public void displayTaskDetails() {
+
+    }
 }

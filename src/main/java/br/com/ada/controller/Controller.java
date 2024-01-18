@@ -1,13 +1,13 @@
 package br.com.ada.controller;
 
-import br.com.ada.service.Service;
+import br.com.ada.service.TaskService;
 
 import java.util.Scanner;
 
 public class Controller {
-    private Service taskService;
+    private TaskService taskService;
 
-    public Controller(Service taskService){
+    public Controller(TaskService taskService){
         this.taskService = taskService;
     }
 
@@ -54,7 +54,7 @@ public class Controller {
 
 
         }
-        service.createTask
+        //service.createTask
     }
 
     public static void displayCreateWorkTaskMenu(){

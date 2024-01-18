@@ -3,11 +3,13 @@ package br.com.ada.service;
 import br.com.ada.domain.BaseTask;
 import br.com.ada.repository.TaskRepository;
 
-public class Service<T extends BaseTask> {
+import java.util.List;
+
+public class TaskService<T extends BaseTask> {
 
     private final TaskRepository taskRepository;
 
-    public Service(TaskRepository taskRepository){
+    public TaskService(TaskRepository taskRepository){
         this.taskRepository = taskRepository;
     }
 
@@ -19,19 +21,15 @@ public class Service<T extends BaseTask> {
         taskRepository.updateTask(task);
     }
 
-    void deleteTask(U id) {
+    void deleteTask(int id) {
         taskRepository.deleteTask(id);
     }
-    void viewTask(T task){
-        task.displayTaskDetails();
+
+    public List<T> getAllTasks(){
+        return taskRepository.getAllTasks();
     }
 
-
-    public <T> List<T> getAllTasks(){
-        taskRepository.getAllTasks();
-    }
-
-    sortTasksFromAToZ();
-    sortTasksFromOldestToNewest();
+    //sortTasksFromAToZ();
+    //sortTasksFromOldestToNewest();
 
 }

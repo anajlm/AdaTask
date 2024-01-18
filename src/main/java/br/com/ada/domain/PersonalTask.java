@@ -2,7 +2,14 @@ package br.com.ada.domain;
 
 public class PersonalTask extends BaseTask {
 
-    public final String TASK_COLOR = "\u001B[32m";
 
+    @Override
+    public void previewTask() {
+        System.out.println(this.getPriority().getTextColor() + "PERSONAL: " + this.getId() + " " + this.getDescription() + " ");
+    }
 
+    @Override
+    public void displayTaskDetails() {
+
+    }
 }
