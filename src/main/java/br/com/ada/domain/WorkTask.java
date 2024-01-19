@@ -1,15 +1,30 @@
 package br.com.ada.domain;
 
-public class WorkTask extends BaseTask {
+import br.com.ada.domain.enums.Priority;
+
+import java.util.Date;
+
+public class WorkTask extends TaskWithDeadline {
+
+    private String client;
 
 
-    @Override
-    public void previewTask() {
-        System.out.println(this.getPriority().getTextColor() + "WORK: " + this.getId() + " " + this.getDescription() + " ");
+    public WorkTask(String description, Priority priority, Date deadline, String client)  {
+        super(description, priority, deadline);
+        this.client = client;
+    }
+
+    public String getClient() {
+        return client;
+    }
+
+    public void setClient(String client) {
+        this.client = client;
     }
 
     @Override
-    public void displayTaskDetails() {
-
+    public void displayTask() {
+        System.out.println(this.getPriority().getTextColor() + this.getId() + " WORK: " + this.getDescription() + " | Client: " + this.getClient() + " | Deadline: " + this.getDeadline());
     }
+
 }

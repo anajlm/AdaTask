@@ -1,8 +1,6 @@
 package br.com.ada.domain;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import br.com.ada.domain.enums.Priority;
 
@@ -10,7 +8,11 @@ public abstract class BaseTask {
     private Integer id;
     private String description;
     private Priority priority;
-    Date deadline;
+
+    public BaseTask(String description, Priority priority) {
+        this.description = description;
+        this.priority = priority;
+    }
 
 
     //textColor = task.getTextColor();
@@ -39,16 +41,7 @@ public abstract class BaseTask {
         this.priority = priority;
     }
 
-    public Date getDeadline() {
-        return deadline;
-    }
+    public abstract void displayTask();
 
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
-    }
-
-
-    public abstract void previewTask();
-    public abstract void displayTaskDetails();
 
 }
