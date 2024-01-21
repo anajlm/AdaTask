@@ -2,26 +2,24 @@ package br.com.ada.domain;
 
 import br.com.ada.domain.enums.Priority;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public abstract class TaskWithDeadline extends BaseTask{
 
-    Date deadline;
+    LocalDate deadline;
 
-    public TaskWithDeadline(String description, Priority priority, Date deadline) {
+    public TaskWithDeadline(String description, Priority priority, LocalDate deadline) {
         super(description, priority);
         this.deadline = deadline;
     }
 
-    public Date getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
     }
 
-    @Override
-    public abstract void displayTask();
 
 }

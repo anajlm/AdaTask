@@ -2,12 +2,14 @@ package br.com.ada.domain;
 
 import br.com.ada.domain.enums.Priority;
 
-public class StudyTask extends BaseTask {
+import java.util.Date;
+
+public class StudyTask extends TaskWithDeadline {
 
     private String subject;
 
-    public StudyTask(String description, Priority priority, String subject) {
-        super(description, priority);
+    public StudyTask(String description, Priority priority, Date deadline, String subject) {
+        super(description, priority, deadline);
         this.subject = subject;
     }
 
@@ -19,9 +21,5 @@ public class StudyTask extends BaseTask {
         this.subject = subject;
     }
 
-    @Override
-    public void displayTask() {
-        System.out.println(this.getPriority().getTextColor() + "STUDY: " + this.getId() + " " + this.getDescription() + " " + this.getPriority() + " " + this.getSubject());
-    }
 
 }

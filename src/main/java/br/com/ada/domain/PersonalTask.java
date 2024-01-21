@@ -8,10 +8,5 @@ public class PersonalTask extends BaseTask {
         super(description, priority);
     }
 
-    @Override
-    public void displayTask() {
-        System.out.println(this.getPriority().getTextColor() +  this.getId() + " PERSONAL: " + this.getDescription());
-    }
-
 
 }

@@ -4,10 +4,10 @@ import br.com.ada.domain.BaseTask;
 
 import java.util.List;
 
-public interface TaskRepository<T extends BaseTask> {
+public interface TaskRepository<T extends BaseTask, U> {
     void createTask(T task);
-    T getTaskById(Integer id);
+    T getTaskById(U id);
     List<T> getAllTasks();
     void updateTask(T task);
-    void deleteTask(Integer id);
+    void deleteTask(U id);
 }

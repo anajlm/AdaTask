@@ -41,7 +41,5 @@ public abstract class BaseTask {
         this.priority = priority;
     }
 
-    public abstract void displayTask();
-
 
 }
