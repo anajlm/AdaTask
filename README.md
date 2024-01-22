@@ -4,12 +4,10 @@ Task Management Console App
 ## Table of Contents
 1. [Overview](#overview)
 2. [Technical Implementation](#technical-implementation)
-3. [Project Structure](#project-structure)
-4. [Additional Considerations](#additional-considerations)
-5. [Usage](#usage)
-6. [Dependencies](#dependencies)
-7. [Contributing](#contributing)
-8. [License](#license)
+3. [Usage](#usage)
+4. [Dependencies](#dependencies)
+5. [Contributing](#contributing)
+6. [License](#license)
 
 
 ## Overview
@@ -42,7 +40,9 @@ The `TaskRepository` interface declares methods for basic CRUD operations on tas
 Each repository class provides implementations for creating, retrieving, updating, and deleting tasks specific to its type.
 
 
-#### **Service Layer**: Implements application logic, including operations for task manipulation. Interacts with the Repository layer to perform data operations and serves as an intermediary between the Controller and Repository layers.
+#### **Service Layer**: 
+
+Implements application logic, including operations for task manipulation. Interacts with the Repository layer to perform data operations and serves as an intermediary between the Controller and Repository layers.
 
 The `TaskService` interface declares methods for basic CRUD operations on tasks.
 The `PersonalTaskService` class, `StudyTaskService` class and `WorkTaskService` class implements `TaskService` for personal tasks, study tasks and work tasks, respectively, interacting with the corresponding repository.
