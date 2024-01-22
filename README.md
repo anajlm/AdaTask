@@ -22,8 +22,7 @@ AdaTask is a simple console application for managing tasks. It allows users to c
 
 The project is structured into different layers:
 
-
-- **Domain Layer**: Defines the structure and business rules for tasks. 
+#### **Domain Layer**: Defines the structure and business rules for tasks. 
 
 - The `BaseTask` class serves as the base entity, containing common attributes.
 - Subclass `PersonalTask` inherit from `BaseTask` and add specific details for study task type.
@@ -31,7 +30,7 @@ The project is structured into different layers:
 - The `WorkTask` class extends `TaskWithDeadline` and represents work tasks. It includes a `client` attribute, indicating the client associated with the task.
  - The `StudyTask` class also extends `TaskWithDeadline` and represents study tasks. It includes a `subject` attribute, indicating the subject of study.
 
-- **Repository Layer**: Manages data storage. The repository layer uses the `TaskRepository` interface to provide methods for basic CRUD operations (Create, Read, Update, Delete) on tasks. It employs in-memory lists for simplicity. The repository is designed to handle various task types through generics.
+#### **Repository Layer**: Manages data storage. The repository layer uses the `TaskRepository` interface to provide methods for basic CRUD operations (Create, Read, Update, Delete) on tasks. It employs in-memory lists for simplicity. The repository is designed to handle various task types through generics.
 
 The `TaskRepository` interface declares methods for basic CRUD operations on tasks.
 `PersonalTaskInMemoryRepository`, `StudyTaskInMemoryRepository` and `WorkTaskInMemoryRepository` implements `TaskRepository` for personal tasks, study tasks and  work tasks, respectively, utilizing an in-memory list for data storage. 
@@ -45,7 +44,7 @@ The `TaskService` interface declares methods for basic CRUD operations on tasks.
 The `PersonalTaskService` class, `StudyTaskService` class and `WorkTaskService` class implements `TaskService` for personal tasks, study tasks and work tasks, respectively, interacting with the corresponding repository.
      
 
-- **Controller Layer**: Manages user interaction via the console. Task-specific controllers process user input, execute corresponding actions, and display results in the console. They interact with the Service layer to perform tasks like creating, editing, deleting, and viewing tasks. Each controller is designed to handle a specific task type.
+#### **Controller Layer**: Manages user interaction via the console. Task-specific controllers process user input, execute corresponding actions, and display results in the console. They interact with the Service layer to perform tasks like creating, editing, deleting, and viewing tasks. Each controller is designed to handle a specific task type.
 
 The `TaskController` interface declares methods for basic task operations such as creating, deleting, editing, and displaying tasks. It also includes a method for running the task-specific menu.
 
@@ -58,9 +57,9 @@ Each task controller displays a specific menu for its type of task and provides 
 
 ### Application Flow
 
-     - The application flow starts with the `ApplicationController`, which displays the main menu and redirects to the corresponding task controller based on user input.
-     - Each task controller interacts with the user to perform operations on tasks by invoking methods from the corresponding service layer.
-     - Task-specific controllers leverage the common `TaskController` interface, promoting consistency and maintainability.
+- The application flow starts with the `ApplicationController`, which displays the main menu and redirects to the corresponding task controller based on user input.
+- Each task controller interacts with the user to perform operations on tasks by invoking methods from the corresponding service layer.
+- Task-specific controllers leverage the common `TaskController` interface, promoting consistency and maintainability.
 
     
 ### Additional Considerations
