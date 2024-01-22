@@ -20,45 +20,43 @@ AdaTask is a simple console application for managing tasks. It allows users to c
 
 The project is structured into different layers:
 
-#### **Domain Layer**: 
+**Domain Layer**: 
 
 Defines the structure and business rules for tasks. 
 
-- The `BaseTask` class serves as the base entity, containing common attributes.
-- Subclass `PersonalTask` inherit from `BaseTask` and add specific details for study task type.
-- The `TaskWithDeadline` abstract class extends `BaseTask` and represents tasks with a deadline. It introduces the `deadline` attribute, allowing tasks to have a specific date by which they need to be completed.
-- The `WorkTask` class extends `TaskWithDeadline` and represents work tasks. It includes a `client` attribute, indicating the client associated with the task.
- - The `StudyTask` class also extends `TaskWithDeadline` and represents study tasks. It includes a `subject` attribute, indicating the subject of study.
-
-#### **Repository Layer**: 
-
-Manages data storage. The repository layer uses the `TaskRepository` interface to provide methods for basic CRUD operations (Create, Read, Update, Delete) on tasks. It employs in-memory lists for simplicity. The repository is designed to handle various task types through generics.
-
-The `TaskRepository` interface declares methods for basic CRUD operations on tasks.
-`PersonalTaskInMemoryRepository`, `StudyTaskInMemoryRepository` and `WorkTaskInMemoryRepository` implements `TaskRepository` for personal tasks, study tasks and  work tasks, respectively, utilizing an in-memory list for data storage. 
-
-Each repository class provides implementations for creating, retrieving, updating, and deleting tasks specific to its type.
+- `BaseTask`: Base entity containing common attributes.
+- `TaskWithDeadline`: Abstract class extending `BaseTask` for tasks with a deadline. It introduces the `deadline` attribute, allowing tasks to have a specific date by which they need to be completed.
+- `PersonalTask`: Inherits from `BaseTask` for personal tasks.
+- `StudyTask`: Extends `TaskWithDeadline` and represents study tasks. It includes a `subject` attribute, indicating the subject of study.
+- `WorkTask`: Extends `TaskWithDeadline` and represents work tasks. It includes a `client` attribute, indicating the client associated with the task.
 
 
-#### **Service Layer**: 
+**Repository Layer**: 
+
+Manages data storage using in-memory lists. The repository layer uses the `TaskRepository` interface to provide methods for basic CRUD operations (Create, Read, Update, Delete) on tasks. It employs in-memory lists for simplicity. The repository is designed to handle various task types through generics.
+
+- `TaskRepository`: Interface to provide methods for basic CRUD operations (Create, Read, Update, Delete) on tasks.
+- `PersonalTaskInMemoryRepository`, `StudyTaskInMemoryRepository`, and `WorkTaskInMemoryRepository`: Implement `TaskRepository` for personal, study, and work tasks. Each repository class provides implementations for creating, retrieving, updating, and deleting tasks specific to its type.
+
+
+**Service Layer**: 
 
 Implements application logic, including operations for task manipulation. Interacts with the Repository layer to perform data operations and serves as an intermediary between the Controller and Repository layers.
 
-The `TaskService` interface declares methods for basic CRUD operations on tasks.
-The `PersonalTaskService` class, `StudyTaskService` class and `WorkTaskService` class implements `TaskService` for personal tasks, study tasks and work tasks, respectively, interacting with the corresponding repository.
-     
+- `TaskService`: Interface for basic CRUD operations on tasks.
+- `PersonalTaskService`, `StudyTaskService`, and `WorkTaskService`: Implement `TaskService` for personal, study, and work tasks, respectively, interacting with the corresponding repository.
 
-#### **Controller Layer**: 
+
+
+**Controller Layer**: 
 
 Manages user interaction via the console. Task-specific controllers process user input, execute corresponding actions, and display results in the console. They interact with the Service layer to perform tasks like creating, editing, deleting, and viewing tasks. Each controller is designed to handle a specific task type.
 
-The `TaskController` interface declares methods for basic task operations such as creating, deleting, editing, and displaying tasks. It also includes a method for running the task-specific menu.
+- `TaskController`: Interface that provides methods for basic task operations such as creating, deleting, editing, and displaying tasks. It also includes a method for running the task-specific menu.
 
-`PersonalTaskControllerImpl`, `StudyTaskControllerImpl`, and `WorkTaskControllerImpl` implement the `TaskController` interface, providing task-specific implementations for each type of task.
+- `PersonalTaskControllerImpl`, `StudyTaskControllerImpl`, and `WorkTaskControllerImpl`: Implement the `TaskController` interface, providing task-specific implementations for task operations. Each task controller displays a specific menu for its type of task.
 
-The `ApplicationController` class serves as the main controller, managing the overall flow of the application. It interacts with the user, displays the main menu, and delegates control to the specific task controllers based on user input.
-
-Each task controller displays a specific menu for its type of task and provides implementations for task operations like creation, deletion, editing, and display.
+- `ApplicationController`: Serves as the main controller, managing the overall flow of the application. It interacts with the user, displays the main menu, and delegates control to the specific task controllers based on user input.
 
 
 ### Application Flow
