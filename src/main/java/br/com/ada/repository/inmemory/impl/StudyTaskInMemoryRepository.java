@@ -1,4 +1,4 @@
-package br.com.ada.repository.inmemory;
+package br.com.ada.repository.inmemory.impl;
 
 import br.com.ada.domain.StudyTask;
 import br.com.ada.repository.TaskRepository;

@@ -1,4 +1,4 @@
-package br.com.ada.repository;
+package br.com.ada.repository.inmemory;
 
 import br.com.ada.domain.PersonalTask;
 import br.com.ada.domain.StudyTask;
@@ -34,10 +34,10 @@ public class DataPopulator {
     }
 
     private void populateStudyTaskRepository(){
-        studyTaskRepository.createTask(new StudyTask("Complete homework", Priority.HIGH, LocalDate.now(), "Math"));
-        studyTaskRepository.createTask(new StudyTask("Research paper", Priority.MEDIUM, LocalDate.now(), "History"));
-        studyTaskRepository.createTask(new StudyTask("Study for exam", Priority.HIGH, LocalDate.now(), "Physics"));
-        studyTaskRepository.createTask(new StudyTask("Read scientific articles", Priority.LOW, LocalDate.now(), "Biology"));
+        studyTaskRepository.createTask(new StudyTask("Complete homework", Priority.HIGH, LocalDate.now().plusDays(7), "Math"));
+        studyTaskRepository.createTask(new StudyTask("Research paper", Priority.MEDIUM, LocalDate.now().plusDays(10), "History"));
+        studyTaskRepository.createTask(new StudyTask("Study for exam", Priority.HIGH, LocalDate.now().plusDays(5), "Physics"));
+        studyTaskRepository.createTask(new StudyTask("Read scientific articles", Priority.LOW, LocalDate.now().plusDays(20), "Biology"));
     }
 
     private void populatePersonalTaskRepository() {
