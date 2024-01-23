@@ -1,9 +1,8 @@
-package br.com.ada.service.impl;
+package br.com.ada.service.task.impl;
 
 import br.com.ada.domain.PersonalTask;
-import br.com.ada.domain.StudyTask;
 import br.com.ada.repository.TaskRepository;
-import br.com.ada.service.TaskService;
+import br.com.ada.service.task.TaskService;
 
 import java.util.List;
 
