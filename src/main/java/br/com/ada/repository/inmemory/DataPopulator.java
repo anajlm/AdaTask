@@ -27,10 +27,10 @@ public class DataPopulator {
     }
 
     private void populateWorkTaskRepository(){
-        workTaskRepository.createTask(new WorkTask("Prepare presentation", Priority.HIGH, LocalDate.now(), "Client A"));
-        workTaskRepository.createTask(new WorkTask("Code review", Priority.MEDIUM, LocalDate.now(), "Project B"));
-        workTaskRepository.createTask(new WorkTask("Meeting with team", Priority.LOW, LocalDate.now(), "Project C"));
-        workTaskRepository.createTask(new WorkTask("Submit project proposal", Priority.HIGH, LocalDate.now(), "Client B"));
+        workTaskRepository.createTask(new WorkTask("Prepare presentation", Priority.HIGH, LocalDate.now().plusDays(1), "Client A"));
+        workTaskRepository.createTask(new WorkTask("Code review", Priority.MEDIUM, LocalDate.now().plusDays(3), "Project B"));
+        workTaskRepository.createTask(new WorkTask("Meeting with team", Priority.LOW, LocalDate.now().plusDays(9), "Project C"));
+        workTaskRepository.createTask(new WorkTask("Submit project proposal", Priority.HIGH, LocalDate.now().plusDays(6), "Client B"));
     }
 
     private void populateStudyTaskRepository(){
@@ -41,10 +41,10 @@ public class DataPopulator {
     }
 
     private void populatePersonalTaskRepository() {
-        personalTaskRepository.createTask(new PersonalTask("Buy groceries", Priority.MEDIUM));
         personalTaskRepository.createTask(new PersonalTask("Read a book", Priority.LOW));
         personalTaskRepository.createTask(new PersonalTask("Exercise", Priority.HIGH));
         personalTaskRepository.createTask(new PersonalTask("Watch a movie", Priority.MEDIUM));
+        personalTaskRepository.createTask(new PersonalTask("Buy groceries", Priority.MEDIUM));
     }
 }
 
