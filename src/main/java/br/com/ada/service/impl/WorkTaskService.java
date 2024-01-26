@@ -4,7 +4,9 @@ import br.com.ada.domain.WorkTask;
 import br.com.ada.repository.TaskRepository;
 import br.com.ada.service.task.TaskService;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WorkTaskService implements TaskService<WorkTask, Integer> {
 
@@ -36,8 +38,16 @@ public class WorkTaskService implements TaskService<WorkTask, Integer> {
 
     @Override
     public List<WorkTask> getAllTasks() {
-        return workTaskRepository.getAllTasks();
+        var tasks = workTaskRepository.getAllTasks();
+        Collections.sort(tasks);
+        return tasks;
     }
 
+    public List<WorkTask> getTasksByClient(String client) {
+        var tasks = workTaskRepository.getAllTasks();
+        return tasks.stream()
+                .filter(task -> task.getClient().equalsIgnoreCase(filter))
+                .collect(Collectors.toList());
+    }
 
 }

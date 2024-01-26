@@ -3,17 +3,17 @@ package br.com.ada.controller.impl;
 import br.com.ada.controller.TaskController;
 import br.com.ada.domain.PersonalTask;
 import br.com.ada.domain.enums.Priority;
-import br.com.ada.service.TaskService;
+import br.com.ada.service.*;
 
-import java.util.Date;
 import java.util.Scanner;
 
-public class PersonalTaskControllerImpl implements TaskController {
+public class PersonalTaskController implements TaskController {
 
     private final TaskService<PersonalTask, Integer> personalTaskService;
+
     private Scanner scanner;
 
-    public PersonalTaskControllerImpl(TaskService<PersonalTask, Integer> personalTaskService) {
+    public PersonalTaskController(TaskService<PersonalTask, Integer> personalTaskService) {
         this.personalTaskService = personalTaskService;
         this.scanner = new Scanner(System.in);
     }
@@ -24,7 +24,7 @@ public class PersonalTaskControllerImpl implements TaskController {
         System.out.print("Enter the task description: ");
         String description = scanner.nextLine();
         System.out.print("Enter the task priority (1-Low, 2-Medium, 3-High): ");
-        Priority priority = TaskController.readPriority();
+        Priority priority = readPriority();
 
         PersonalTask task = new PersonalTask(description, priority);
         personalTaskService.addTask(task);
@@ -49,7 +49,7 @@ public class PersonalTaskControllerImpl implements TaskController {
         String newDescription = scanner.nextLine();
 
         System.out.print("Enter the new priority (1-Low, 2-Medium, 3-High): ");
-        Priority newPriority = TaskController.readPriority();
+        Priority newPriority = readPriority();
 
         taskToEdit.setDescription(newDescription);
         taskToEdit.setPriority(newPriority);
@@ -60,7 +60,8 @@ public class PersonalTaskControllerImpl implements TaskController {
 
     @Override
     public void displayTasks() {
-        for (PersonalTask task : personalTaskService.getAllTasks()) {
+        var tasks = personalTaskService.getAllTasks();
+        for (PersonalTask task : tasks) {
             System.out.println(task.getPriority().getTextColor() + task.getId() + ": " + task.getDescription() + "\u001B[0m");
         }
     }

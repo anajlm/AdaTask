@@ -4,7 +4,9 @@ import br.com.ada.domain.StudyTask;
 import br.com.ada.repository.TaskRepository;
 import br.com.ada.service.task.TaskService;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StudyTaskService implements TaskService<StudyTask, Integer> {
 
@@ -36,7 +38,17 @@ public class StudyTaskService implements TaskService<StudyTask, Integer> {
 
     @Override
     public List<StudyTask> getAllTasks() {
-        return studyTaskRepository.getAllTasks();
+        var tasks = studyTaskRepository.getAllTasks();
+        Collections.sort(tasks);
+        return tasks;
     }
+
+    public List<StudyTask> getTasksBySubject(String subject){
+        var tasks = studyTaskRepository.getAllTasks();
+        return tasks.stream()
+                .filter(task -> task.getSubject().equalsIgnoreCase(subject))
+                .collect(Collectors.toList());
+    }
+
 
 }
