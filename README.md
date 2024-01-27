@@ -2,22 +2,33 @@
 Task Management Console App
 
 ## Table of Contents
-[Overview](#overview)
-[Technical Implementation](#technical-implementation)
-- [Project Structure](#21-project-structure)
-- [Application Flow](#22-application-flow)
-- [Additional Considerations](#23-additional-considerations)
-[Usage](#usage)
-[Dependencies](#dependencies)
-[Contributing](#contributing)
-[License](#license)
+- [Overview](#overview)
+- [Features](#features)
+- [Technical Implementation](#technical-implementation)
+	- [Project Structure](#21-project-structure)
+	- [Application Flow](#22-application-flow)
+	- [Additional Considerations](#23-additional-considerations)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [Contributing](#contributing)
+- [License](#license)
 
-
+<div style="text-align: justify;">
 ## Overview
 
 AdaTask is a simple console application for managing tasks. It allows users to create, edit, delete, and view personal, work and study tasks.
 
+
+
 ## Features
+
+- **Task Creation**: Add new tasks with details such as title, description, deadline, etc.
+
+- **Task Editing**: Update details of existing tasks.
+
+- **Task Removal**: Delete existing tasks.
+
+- **Task Viewing**: List all tasks or filter by specific criteria.
 
 
 
@@ -38,23 +49,23 @@ Defines the structure and business rules for tasks.
 
 
 - **Contracts**
-	- **FilterableTask**: Interface defining tasks that can be filtered based on specific criteria.
+	- `FilterableTask`: Interface defining tasks that can be filtered based on specific criteria.
 
 - **Enums**
-	- **Priority**: defines the priority levels that can be assigned to tasks: LOW, MEDIUM, and HIGH.
+	- Priority: defines the priority levels that can be assigned to tasks: LOW, MEDIUM, and HIGH.
 
 - **Entities**
-	- **PersonalTask**: Inherits from BaseTask for personal tasks.
-	- **StudyTask**: Extends TaskWithDeadline and and implements FilterableTask. Represents study tasks. It includes a `subject` attribute, indicating the subject of study.
-	- **WorkTask**: Extends TaskWithDeadline and implements FilterableTask. Represents work tasks. It includes a `client` attribute, indicating the client associated with the task.
+	- `PersonalTask`: Inherits from `BaseTask` for personal tasks.
+	- `StudyTask`: Extends `TaskWithDeadline` and and implements FilterableTask. Represents study tasks. It includes a `subject` attribute, indicating the subject of study.
+	- `WorkTask`: Extends `TaskWithDeadline` and implements FilterableTask. Represents work tasks. It includes a `client` attribute, indicating the client associated with the task.
 	
 	
 #### Repository Layer: 
 
 Manages data storage using in-memory lists for simplicity.
 
-- **TaskRepository**: Interface to provide methods for basic CRUD operations (Create, Read, Update, Delete) on tasks. This interface is designed to handle various task types through generics.
-- **PersonalTaskInMemoryRepository**, **StudyTaskInMemoryRepository**, and **WorkTaskInMemoryRepository**: Implement `TaskRepository` for personal, study, and work tasks. Each repository class provides implementations for creating, retrieving, updating, and deleting tasks specific to its type.
+- `TaskRepository`: Interface to provide methods for basic CRUD operations (Create, Read, Update, Delete) on tasks. This interface is designed to handle various task types through generics.
+- `PersonalTaskInMemoryRepository`, `StudyTaskInMemoryRepository`, and `WorkTaskInMemoryRepository`: Implement `TaskRepository` for personal, study, and work tasks. Each repository class provides implementations for creating, retrieving, updating, and deleting tasks specific to its type.
 
 
 #### Service Layer: 
@@ -125,5 +136,5 @@ If you'd like to contribute to AdaTask, please fork the repository, create a new
 This project is licensed under the [MIT License](LICENSE).
 
 
-
+</div>
 
