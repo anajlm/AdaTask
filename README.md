@@ -131,7 +131,7 @@ Follow the on-screen instructions to perform the desired operation.
 
 <p align="center">
 	<img src="img/work_task_menu.png" alt="Work Task Menu" >
-	<img src="iimg/study_task_menu.png" alt="Study Task Menu" >
+	<img src="img/study_task_menu.png" alt="Study Task Menu" >
 	<img src="img/personal_task_menu.png" alt="Personal Task Menu" >
 </p>
 
