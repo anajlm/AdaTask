@@ -1,9 +1,10 @@
 package br.com.ada.domain;
 
-import java.util.Date;
-
 import br.com.ada.domain.enums.Priority;
 
+/**
+ * Represents the base entity containing common attributes for all tasks.
+ */
 public abstract class BaseTask {
     private Integer id;
     private String description;
@@ -13,9 +14,6 @@ public abstract class BaseTask {
         this.description = description;
         this.priority = priority;
     }
-
-
-    //textColor = task.getTextColor();
 
     public Integer getId() {
         return id;
@@ -40,6 +38,5 @@ public abstract class BaseTask {
     public void setPriority(Priority priority) {
         this.priority = priority;
     }
-
 
 }

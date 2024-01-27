@@ -1,4 +1,4 @@
-package br.com.ada.utils;
+package br.com.ada.util;
 
 import java.util.Scanner;
 

@@ -1,8 +1,8 @@
-package br.com.ada.service.task.impl;
+package br.com.ada.service.impl;
 
-import br.com.ada.domain.PersonalTask;
+import br.com.ada.domain.entities.PersonalTask;
 import br.com.ada.repository.TaskRepository;
-import br.com.ada.service.task.TaskService;
+import br.com.ada.service.TaskService;
 
 import java.util.List;
 
@@ -37,6 +37,13 @@ public class PersonalTaskService implements TaskService<PersonalTask, Integer> {
     @Override
     public List<PersonalTask> getAllTasks() {
         return personalTaskRepository.getAllTasks();
+    }
+
+    @Override
+    public void ensureTaskExists(Integer id) {
+        if (personalTaskRepository.getTaskById(id) == null) {
+            throw new IllegalArgumentException("Work task with ID " + id + " not found.");
+        }
     }
 
 }

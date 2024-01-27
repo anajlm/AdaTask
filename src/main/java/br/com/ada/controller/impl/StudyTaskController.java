@@ -1,12 +1,9 @@
 package br.com.ada.controller.impl;
 
 import br.com.ada.controller.FilterableTaskWithDeadlineController;
-import br.com.ada.controller.TaskController;
-import br.com.ada.controller.TaskWithDeadlineController;
-import br.com.ada.domain.StudyTask;
-import br.com.ada.domain.WorkTask;
+import br.com.ada.domain.entities.StudyTask;
 import br.com.ada.domain.enums.Priority;
-import br.com.ada.service.*;
+import br.com.ada.service.FilterableTaskService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -51,10 +48,10 @@ public class StudyTaskController implements FilterableTaskWithDeadlineController
         System.out.println();
         System.out.println("==== Display Work Tasks ====");
 
-        List<StudyTask> tasks = getTasksWithFilterApplied();
+        List<StudyTask> tasks = applyFilter();
 
         if(tasks.isEmpty()){
-            System.out.println("You don't have work tasks.");
+            System.out.println("The research did not find any study tasks.");
             return;
         }
 
@@ -138,7 +135,7 @@ public class StudyTaskController implements FilterableTaskWithDeadlineController
     }
 
     @Override
-    public List<StudyTask> getTasksWithFilterApplied() {
+    public List<StudyTask> applyFilter() {
         String subjectFilter = readSubjectFilter();
         if(subjectFilter.isEmpty()){
             return studyTaskService.getAllTasks();

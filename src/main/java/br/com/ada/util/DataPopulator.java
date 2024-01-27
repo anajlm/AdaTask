@@ -1,8 +1,8 @@
-package br.com.ada.repository.impl.inmemory.schema;
+package br.com.ada.util;
 
-import br.com.ada.domain.PersonalTask;
-import br.com.ada.domain.StudyTask;
-import br.com.ada.domain.WorkTask;
+import br.com.ada.domain.entities.PersonalTask;
+import br.com.ada.domain.entities.StudyTask;
+import br.com.ada.domain.entities.WorkTask;
 import br.com.ada.domain.enums.Priority;
 import br.com.ada.repository.TaskRepository;
 

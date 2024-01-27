@@ -1,5 +1,8 @@
 package br.com.ada.domain.enums;
 
+/**
+ * Enum representing the priority levels of tasks.
+ */
 public enum Priority {
 
     LOW("\u001B[32m"), // green

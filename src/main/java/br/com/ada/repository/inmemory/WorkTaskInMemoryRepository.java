@@ -1,6 +1,6 @@
-package br.com.ada.repository.impl.inmemory;
+package br.com.ada.repository.inmemory;
 
-import br.com.ada.domain.WorkTask;
+import br.com.ada.domain.entities.WorkTask;
 import br.com.ada.repository.TaskRepository;
 
 import java.util.ArrayList;

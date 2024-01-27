@@ -1,10 +1,7 @@
 package br.com.ada.controller.impl;
 
-import br.com.ada.controller.FilterableTaskController;
 import br.com.ada.controller.FilterableTaskWithDeadlineController;
-import br.com.ada.controller.TaskWithDeadlineController;
-import br.com.ada.domain.BaseTask;
-import br.com.ada.domain.WorkTask;
+import br.com.ada.domain.entities.WorkTask;
 import br.com.ada.domain.enums.Priority;
 import br.com.ada.service.FilterableTaskService;
 
@@ -50,10 +47,10 @@ public class WorkTaskController implements FilterableTaskWithDeadlineController<
         System.out.println();
         System.out.println("==== Display Work Tasks ====");
 
-        List<WorkTask> tasks = getTasksWithFilterApplied();
+        List<WorkTask> tasks = applyFilter();
 
         if(tasks.isEmpty()){
-            System.out.println("You don't have work tasks.");
+            System.out.println("The research did not find any work tasks.");
             return;
         }
 
@@ -78,6 +75,7 @@ public class WorkTaskController implements FilterableTaskWithDeadlineController<
         String client = readClient();
 
         workTaskService.addTask(new WorkTask(description, priority, deadline, client));
+        System.out.println("Work Task created successfully.");
     }
 
     @Override
@@ -109,6 +107,9 @@ public class WorkTaskController implements FilterableTaskWithDeadlineController<
 
     @Override
     public void deleteTask() {
+        System.out.println();
+        System.out.println("==== Delete Work Task ====");
+
         Integer id = readId();
         try {
             workTaskService.deleteTask(id);
@@ -131,7 +132,7 @@ public class WorkTaskController implements FilterableTaskWithDeadlineController<
         System.out.println("Enter your choice: ");
     }
 
-    public List<WorkTask> getTasksWithFilterApplied(){
+    public List<WorkTask> applyFilter(){
         String clientFilter = readClientFilter();
         if(clientFilter.isEmpty()){
             return workTaskService.getAllTasks();

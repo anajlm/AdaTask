@@ -1,39 +1,70 @@
 package br.com.ada;
 
-import br.com.ada.domain.*;
 import br.com.ada.controller.*;
 import br.com.ada.controller.impl.*;
-import br.com.ada.repository.inmemory.DataPopulator;
-import br.com.ada.repository.inmemory.impl.PersonalTaskInMemoryRepository;
-import br.com.ada.repository.inmemory.impl.StudyTaskInMemoryRepository;
+import br.com.ada.domain.entities.*;
 import br.com.ada.repository.TaskRepository;
-import br.com.ada.repository.inmemory.impl.WorkTaskInMemoryRepository;
+import br.com.ada.repository.inmemory.*;
 import br.com.ada.service.*;
 import br.com.ada.service.impl.*;
+import br.com.ada.util.DataPopulator;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
-public class Main {
+import java.util.Scanner;
+
+public class MainController {
     public static void main(String[] args) {
 
         TaskRepository<WorkTask, Integer> workTaskRepository = new WorkTaskInMemoryRepository();
         FilterableTaskService<WorkTask, Integer, String> workTaskService = new WorkTaskService(workTaskRepository);
-        TaskController workTaskController = new WorkTaskControllerImpl(workTaskService);
+        FilterableTaskWithDeadlineController<WorkTask> workTaskController = new WorkTaskController(workTaskService);
 
         TaskRepository<StudyTask, Integer> studyTaskRepository = new StudyTaskInMemoryRepository();
         FilterableTaskService<StudyTask, Integer, String> studyTaskService = new StudyTaskService(studyTaskRepository);
-        TaskController studyTaskController = new StudyTaskControllerImpl(studyTaskService);
+        FilterableTaskWithDeadlineController<StudyTask> studyTaskController = new StudyTaskController(studyTaskService);
 
         TaskRepository<PersonalTask, Integer> personalTaskRepository = new PersonalTaskInMemoryRepository();
         TaskService<PersonalTask, Integer> personalTaskService = new PersonalTaskService(personalTaskRepository);
-        TaskController personalTaskController = new PersonalTaskControllerImpl(personalTaskService);
+        TaskController<StudyTask> personalTaskController = new PersonalTaskController(personalTaskService);
 
         DataPopulator dataPopulator = new DataPopulator(workTaskRepository, studyTaskRepository, personalTaskRepository);
         dataPopulator.populateRepository();
 
-        ApplicationController controller = new ApplicationController(workTaskController, studyTaskController, personalTaskController);
+        Scanner scanner = new Scanner(System.in);
 
-        controller.run();
+        System.out.println("======= AdaTask =======");
+        System.out.println();
 
+        displayMainMenu();
+        int option = scanner.nextInt();
+        scanner.nextLine();
+
+        while(true) {
+            switch (option){
+                case 1:
+                    workTaskController.run();
+                    break;
+                case 2:
+                    studyTaskController.run();
+                    break;
+                case 3:
+                    personalTaskController.run();
+                    break;
+                case 4:
+                    System.out.println("Exiting application...");
+                    return;
+                default:
+                    System.out.println("Please enter a valid option.");
+            }
+        }
+
+    }
+
+    public static void displayMainMenu() {
+        System.out.println("==== Main Menu ====");
+        System.out.println("1. Work Tasks");
+        System.out.println("2. Study Tasks");
+        System.out.println("3. Personal Tasks");
+        System.out.println("4. Exit");
+        System.out.print("Enter your choice: ");
     }
 }

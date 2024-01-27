@@ -1,5 +1,6 @@
-package br.com.ada.domain;
+package br.com.ada.domain.entities;
 
+import br.com.ada.domain.TaskWithDeadline;
 import br.com.ada.domain.contracts.FilterableTask;
 import br.com.ada.domain.enums.Priority;
 

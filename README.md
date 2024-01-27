@@ -38,7 +38,7 @@ AdaTask is a simple console application for managing tasks. It allows users to c
 
 ### Project Structure
 
-AdaTask follows a layered architecture design pattern, organizing its components into distinct layers, each with its specific responsibilities.
+AdaTask follows a layered architecture design pattern, organizing its components into distinct layers: Domain, Repository, Service, and Controller.
 
 
 #### Domain Layer: 
@@ -101,10 +101,11 @@ Manages user interaction via the console. Task-specific controllers process user
 	- `PersonalTaskController`: Implements the `TaskController` interface, providing task-specific implementations for task operations. 
 
 
-	- `StudyTaskController` and `WorkTaskController`: Implements FilterableTaskWithDeadlineController for managing work tasks with deadlines. It supports filtering tasks by client and includes operations for task manipulation.
+	- `StudyTaskController` and `WorkTaskController`: Implements FilterableTaskWithDeadlineController for managing filterable tasks with deadlines. 
 
 
 	- `MainController`: Serves as the main controller, managing the overall flow of the application. It interacts with the user, displays the main menu, and delegates control to the specific task controllers based on user input.
+
 
 
 ### Application Flow
@@ -112,12 +113,14 @@ Manages user interaction via the console. Task-specific controllers process user
 - The application flow starts with the `MainController`, which displays the main menu and redirects to the corresponding task controller based on user input.
 - Each task controller interacts with the user to perform operations on tasks by invoking methods from the corresponding service layer.
 
+
     
 ### Additional Considerations
 
 - The project adheres to SOLID principles for clean and extensible design.
 
 - Demonstrates the application of inheritance and generics in data structures and task manipulation operations.
+
 
 
 
@@ -140,17 +143,37 @@ Follow the on-screen instructions to perform the desired operation.
 </p>
 
 
+
+
 ## Dependencies 
 
 The project does not have any external dependencies.
+
+
 
 ## Contributing
 
 If you'd like to contribute to AdaTask, please fork the repository, create a new branch, make your changes, and submit a pull request.
 
+
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+
+
+The AdaTask project follows a layered architecture, separating concerns into distinct layers: Domain, Repository, Service, and Controller.
+
+    Domain Layer: Defines the core business entities and their relationships. It includes base classes like BaseTask, abstract classes like TaskWithDeadline, and concrete task types like PersonalTask, StudyTask, and WorkTask. Additionally, it includes the FilterableTask interface for tasks that can be filtered based on specific criteria.
+
+    Repository Layer: Manages data storage and retrieval. It provides interfaces like TaskRepository for CRUD operations on tasks and concrete implementations like PersonalTaskInMemoryRepository, StudyTaskInMemoryRepository, and WorkTaskInMemoryRepository for in-memory storage. These repositories handle persistence for their respective task types.
+
+    Service Layer: Implements application logic and orchestrates interactions between the controllers and repositories. It includes interfaces like TaskService for basic task operations and FilterableTaskService for tasks with filtering capabilities. Concrete implementations like PersonalTaskService, StudyTaskService, and WorkTaskService handle business logic for their respective task types.
+
+    Controller Layer: Manages user interaction and drives the application's behavior. It includes interfaces like TaskController for basic task operations and FilterableTaskController for tasks with filtering capabilities. Concrete implementations like PersonalTaskController, StudyTaskController, and WorkTaskController handle user input, execute corresponding actions, and display results in the console. The MainController acts as the entry point, displaying the main menu and delegating control to specific task controllers.
+
+Overall, this architecture promotes separation of concerns, maintainability, and scalability by organizing the codebase into modular and cohesive layers. Each layer has well-defined responsibilities, allowing for easier testing, debugging, and future enhancements.
 
 
 

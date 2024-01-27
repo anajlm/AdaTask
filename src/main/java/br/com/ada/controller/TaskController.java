@@ -2,9 +2,14 @@ package br.com.ada.controller;
 
 import br.com.ada.domain.BaseTask;
 import br.com.ada.domain.enums.Priority;
+import br.com.ada.util.UserInput;
 
 import java.util.Scanner;
 
+/**
+ * Interface providing methods for basic task operations such as creating, deleting, editing, and displaying tasks.
+ * Also includes a method for running the task-specific menu.
+ */
 public interface TaskController<T extends BaseTask> {
     UserInput userInput = new UserInput();
 

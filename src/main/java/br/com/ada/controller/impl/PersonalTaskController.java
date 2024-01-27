@@ -1,9 +1,10 @@
 package br.com.ada.controller.impl;
 
 import br.com.ada.controller.TaskController;
-import br.com.ada.domain.PersonalTask;
+import br.com.ada.domain.BaseTask;
+import br.com.ada.domain.entities.PersonalTask;
 import br.com.ada.domain.enums.Priority;
-import br.com.ada.service.*;
+import br.com.ada.service.TaskService;
 
 import java.util.Scanner;
 
@@ -18,53 +19,6 @@ public class PersonalTaskController implements TaskController {
         this.scanner = new Scanner(System.in);
     }
 
-    @Override
-    public void createTask() {
-        //scanner.nextLine();
-        System.out.print("Enter the task description: ");
-        String description = scanner.nextLine();
-        System.out.print("Enter the task priority (1-Low, 2-Medium, 3-High): ");
-        Priority priority = readPriority();
-
-        PersonalTask task = new PersonalTask(description, priority);
-        personalTaskService.addTask(task);
-        System.out.println("Personal Task created successfully.");
-    }
-
-    @Override
-    public void deleteTask() {
-        System.out.print("Enter the task id: ");
-        int id = scanner.nextInt();
-        personalTaskService.deleteTask(id);
-        System.out.println("Personal Task deleted successfully.");
-    }
-
-    @Override
-    public void editTask() {
-        System.out.print("Enter the task id: ");
-        int id = scanner.nextInt();
-        PersonalTask taskToEdit = personalTaskService.getTaskById(id);
-
-        System.out.print("Enter the new description: ");
-        String newDescription = scanner.nextLine();
-
-        System.out.print("Enter the new priority (1-Low, 2-Medium, 3-High): ");
-        Priority newPriority = readPriority();
-
-        taskToEdit.setDescription(newDescription);
-        taskToEdit.setPriority(newPriority);
-
-        personalTaskService.editTask(taskToEdit);
-        System.out.println("Personal Task edited successfully.");
-    }
-
-    @Override
-    public void displayTasks() {
-        var tasks = personalTaskService.getAllTasks();
-        for (PersonalTask task : tasks) {
-            System.out.println(task.getPriority().getTextColor() + task.getId() + ": " + task.getDescription() + "\u001B[0m");
-        }
-    }
 
     @Override
     public void run() {
@@ -89,7 +43,71 @@ public class PersonalTaskController implements TaskController {
         scanner.nextLine();
     }
 
+
+    @Override
+    public void displayTasks() {
+        System.out.println();
+        System.out.println("==== Display Personal Tasks ====");
+
+        var tasks = personalTaskService.getAllTasks();
+        for (PersonalTask task : tasks) {
+            printTask(task);
+        }
+    }
+
+    @Override
+    public void printTask(BaseTask task) {
+        System.out.println(task.getPriority().getTextColor() + task.getId() + ": " + task.getDescription() + "\u001B[0m");
+    }
+
+    @Override
+    public void createTask() {
+        System.out.println();
+        System.out.println("==== Create Personal Task ====");
+
+        String description = readDescription();
+        Priority priority = readPriority();
+
+        personalTaskService.addTask(new PersonalTask(description, priority));
+        System.out.println("Personal Task created successfully.");
+    }
+
+    @Override
+    public void editTask() {
+        System.out.println();
+        System.out.println("==== Edit Personal Task ====");
+
+        Integer id = readId();
+
+        try {
+            PersonalTask taskToEdit = personalTaskService.getTaskById(id);
+
+            String description = readDescription();
+            Priority priority = readPriority();
+
+            personalTaskService.editTask(taskToEdit);
+            System.out.println("Personal Task edited successfully.");
+        } catch (IllegalArgumentException e){
+            System.out.println("Unable to edit task: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void deleteTask() {
+        System.out.println();
+        System.out.println("==== Delete Personal Task ====");
+
+        Integer id = readId();
+        try {
+            personalTaskService.deleteTask(id);
+            System.out.println("Personal Task deleted successfully.");
+        } catch (IllegalArgumentException e){
+            System.out.println("Unable to delete task: " + e.getMessage());
+        }
+    }
+
     private void displayTaskMenu() {
+        System.out.println();
         System.out.println("==== Personal Task Menu ====");
         System.out.println("1. View all personal tasks");
         System.out.println("2. Create personal task");
