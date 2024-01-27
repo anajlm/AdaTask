@@ -13,7 +13,8 @@ Task Management Console App
 - [Contributing](#contributing)
 - [License](#license)
 
-<div style="text-align: justify;">
+
+
 ## Overview
 
 AdaTask is a simple console application for managing tasks. It allows users to create, edit, delete, and view personal, work and study tasks.
@@ -65,7 +66,8 @@ Defines the structure and business rules for tasks.
 Manages data storage using in-memory lists for simplicity.
 
 - `TaskRepository`: Interface to provide methods for basic CRUD operations (Create, Read, Update, Delete) on tasks. This interface is designed to handle various task types through generics.
-- `PersonalTaskInMemoryRepository`, `StudyTaskInMemoryRepository`, and `WorkTaskInMemoryRepository`: Implement `TaskRepository` for personal, study, and work tasks. Each repository class provides implementations for creating, retrieving, updating, and deleting tasks specific to its type.
+
+- `PersonalTaskInMemoryRepository`, `StudyTaskInMemoryRepository`, and `WorkTaskInMemoryRepository`: Implement TaskRepository for personal, study, and work tasks. Each repository class provides implementations for creating, retrieving, updating, and deleting tasks specific to its type.
 
 
 #### Service Layer: 
@@ -73,7 +75,8 @@ Manages data storage using in-memory lists for simplicity.
 Implements application logic, including operations for task manipulation. Interacts with the Repository layer to perform data operations and serves as an intermediary between the Controller and Repository layers.
 
 - `TaskService`: Interface for basic CRUD operations on tasks.
-- `PersonalTaskService`, `StudyTaskService`, and `WorkTaskService`: Implement `TaskService` for personal, study, and work tasks, respectively, interacting with the corresponding repository.
+
+- `PersonalTaskService`, `StudyTaskService`, and `WorkTaskService`: Implement TaskService for personal, study, and work tasks, respectively, interacting with the corresponding repository.
 
 
 
@@ -83,25 +86,27 @@ Manages user interaction via the console. Task-specific controllers process user
 
 - `TaskController`: Interface that provides methods for basic task operations such as creating, deleting, editing, and displaying tasks. It also includes a method for running the task-specific menu.
 
+- `TaskWithDeadlineController`: Interface extending TaskController, specifically for tasks with deadlines. It includes methods for handling deadline-related operations.
 
-- TaskWithDeadlineController: Interface extending TaskController, specifically for tasks with deadlines. It includes methods for handling deadline-related operations.
-- FilterableTaskController: Interface for controllers that support task filtering based on specific criteria.
-- FilterableTaskWithDeadlineController: Extends TaskWithDeadlineController and FilterableTaskController, combining functionality for tasks with deadlines and filtering capabilities.
+- `FilterableTaskController`: Interface for controllers that support task filtering based on specific criteria.
 
-- `PersonalTaskController`: Implements the `TaskController` interface, providing task-specific implementations for task operations. 
+- `FilterableTaskWithDeadlineController`: Extends TaskWithDeadlineController and FilterableTaskController, combining functionality for tasks with deadlines and filtering capabilities.
+
+- **Implementations**
+
+	- `PersonalTaskController`: Implements the `TaskController` interface, providing task-specific implementations for task operations. 
 
 
-- `StudyTaskController` and `WorkTaskController`: Implements FilterableTaskWithDeadlineController for managing work tasks with deadlines. It supports filtering tasks by client and includes operations for task manipulation.
+	- `StudyTaskController` and `WorkTaskController`: Implements FilterableTaskWithDeadlineController for managing work tasks with deadlines. It supports filtering tasks by client and includes operations for task manipulation.
 
 
-- `MainController`: Serves as the main controller, managing the overall flow of the application. It interacts with the user, displays the main menu, and delegates control to the specific task controllers based on user input.
+	- `MainController`: Serves as the main controller, managing the overall flow of the application. It interacts with the user, displays the main menu, and delegates control to the specific task controllers based on user input.
 
 
 ### Application Flow
 
 - The application flow starts with the `MainController`, which displays the main menu and redirects to the corresponding task controller based on user input.
 - Each task controller interacts with the user to perform operations on tasks by invoking methods from the corresponding service layer.
-- Task-specific controllers leverage the common `TaskController` interface, promoting consistency and maintainability.
 
     
 ### Additional Considerations
@@ -114,13 +119,17 @@ Manages user interaction via the console. Task-specific controllers process user
 
 ## Usage
 
-Ensure you have [IntelliJ IDEA](https://www.jetbrains.com/idea/) installed on your system. Open the project in IntelliJ and run the application by executing the main class. 
 
-Upon running the application, you will be presented with a menu to select the task category (personal, study, or work).
+1. Ensure you have [IntelliJ IDEA](https://www.jetbrains.com/idea/) installed on your system. Open the project in IntelliJ and run the application by executing the `MainController` class. 
 
-Choose an option to view tasks, create a new task, edit an existing task, or delete a task.
+2. Upon running the application, you will be presented with a menu to select the task category (personal, study, or work).
+
+![Main Menu](img/main_menu.png)
+
+3. Choose an option to view tasks, create a new task, edit an existing task, or delete a task.
 Follow the on-screen instructions to perform the desired operation.
 
+![Work Task Menu](img/work_task_menu.png) ![Study Task Menu](img/study_task_menu.png) ![Personal Task Menu](img/personal_task_menu.png)
 
 
 ## Dependencies 
@@ -136,5 +145,4 @@ If you'd like to contribute to AdaTask, please fork the repository, create a new
 This project is licensed under the [MIT License](LICENSE).
 
 
-</div>
 
