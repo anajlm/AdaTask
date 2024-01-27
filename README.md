@@ -2,52 +2,62 @@
 Task Management Console App
 
 ## Table of Contents
-1. [Overview](#overview)
-2. [Technical Implementation](#technical-implementation)
-3. [Usage](#usage)
-4. [Dependencies](#dependencies)
-5. [Contributing](#contributing)
-6. [License](#license)
+[Overview](#overview)
+[Technical Implementation](#technical-implementation)
+- [Project Structure](#21-project-structure)
+- [Application Flow](#22-application-flow)
+- [Additional Considerations](#23-additional-considerations)
+[Usage](#usage)
+[Dependencies](#dependencies)
+[Contributing](#contributing)
+[License](#license)
 
 
 ## Overview
 
 AdaTask is a simple console application for managing tasks. It allows users to create, edit, delete, and view personal, work and study tasks.
 
+## Features
+
+
+
 ## Technical Implementation
+
 
 ### Project Structure
 
-The project is structured into different layers:
+AdaTask follows a layered architecture design pattern, organizing its components into distinct layers, each with its specific responsibilities.
 
-**Domain Layer**: 
+
+#### Domain Layer: 
 
 Defines the structure and business rules for tasks. 
 
 - `BaseTask`: Base entity containing common attributes.
 - `TaskWithDeadline`: Abstract class extending `BaseTask` for tasks with a deadline. It introduces the `deadline` attribute, allowing tasks to have a specific date by which they need to be completed.
 
-	- **Contracts**
-		- `FilterableTask`: Interface defining tasks that can be filtered based on specific criteria.
+
+- **Contracts**
+	- **FilterableTask**: Interface defining tasks that can be filtered based on specific criteria.
+
+- **Enums**
+	- **Priority**: defines the priority levels that can be assigned to tasks: LOW, MEDIUM, and HIGH.
+
+- **Entities**
+	- **PersonalTask**: Inherits from BaseTask for personal tasks.
+	- **StudyTask**: Extends TaskWithDeadline and and implements FilterableTask. Represents study tasks. It includes a `subject` attribute, indicating the subject of study.
+	- **WorkTask**: Extends TaskWithDeadline and implements FilterableTask. Represents work tasks. It includes a `client` attribute, indicating the client associated with the task.
 	
-	- **Enums**
-		- Priority: defines the priority levels that can be assigned to tasks: LOW, MEDIUM, and HIGH.
 	
-	- **Entities**
-		- `PersonalTask`: Inherits from `BaseTask` for personal tasks.
-		- `StudyTask`: Extends `TaskWithDeadline` and and implements FilterableTask. Represents study tasks. It includes a `subject` attribute, indicating the subject of study.
-		- `WorkTask`: Extends `TaskWithDeadline` and implements FilterableTask. Represents work tasks. It includes a `client` attribute, indicating the client associated with the task.
-	
-	
-**Repository Layer**: 
+#### Repository Layer: 
 
 Manages data storage using in-memory lists for simplicity.
 
-- `TaskRepository`: Interface to provide methods for basic CRUD operations (Create, Read, Update, Delete) on tasks. This interface is designed to handle various task types through generics.
-- `PersonalTaskInMemoryRepository`, `StudyTaskInMemoryRepository`, and `WorkTaskInMemoryRepository`: Implement `TaskRepository` for personal, study, and work tasks. Each repository class provides implementations for creating, retrieving, updating, and deleting tasks specific to its type.
+- **TaskRepository**: Interface to provide methods for basic CRUD operations (Create, Read, Update, Delete) on tasks. This interface is designed to handle various task types through generics.
+- **PersonalTaskInMemoryRepository**, **StudyTaskInMemoryRepository**, and **WorkTaskInMemoryRepository**: Implement `TaskRepository` for personal, study, and work tasks. Each repository class provides implementations for creating, retrieving, updating, and deleting tasks specific to its type.
 
 
-**Service Layer**: 
+#### Service Layer: 
 
 Implements application logic, including operations for task manipulation. Interacts with the Repository layer to perform data operations and serves as an intermediary between the Controller and Repository layers.
 
@@ -56,7 +66,7 @@ Implements application logic, including operations for task manipulation. Intera
 
 
 
-**Controller Layer**: 
+#### Controller Layer: 
 
 Manages user interaction via the console. Task-specific controllers process user input, execute corresponding actions, and display results in the console. They interact with the Service layer to perform tasks like creating, editing, deleting, and viewing tasks. Each controller is designed to handle a specific task type.
 
@@ -78,7 +88,7 @@ Manages user interaction via the console. Task-specific controllers process user
 
 ### Application Flow
 
-- The application flow starts with the `ApplicationController`, which displays the main menu and redirects to the corresponding task controller based on user input.
+- The application flow starts with the `MainController`, which displays the main menu and redirects to the corresponding task controller based on user input.
 - Each task controller interacts with the user to perform operations on tasks by invoking methods from the corresponding service layer.
 - Task-specific controllers leverage the common `TaskController` interface, promoting consistency and maintainability.
 
@@ -88,17 +98,6 @@ Manages user interaction via the console. Task-specific controllers process user
 - The project adheres to SOLID principles for clean and extensible design.
 
 - Demonstrates the application of inheritance and generics in data structures and task manipulation operations.
-
-
-## Deployment
-
-
-### Deployment with in-memory repository
-
-
-### Deployment with PostgreSQL
-
-- Execute docker-compose up which will setup and deploy DB.
 
 
 
