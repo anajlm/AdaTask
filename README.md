@@ -67,7 +67,9 @@ Manages data storage using in-memory lists for simplicity.
 
 - `TaskRepository`: Interface to provide methods for basic CRUD operations (Create, Read, Update, Delete) on tasks. This interface is designed to handle various task types through generics.
 
-- `PersonalTaskInMemoryRepository`, `StudyTaskInMemoryRepository`, and `WorkTaskInMemoryRepository`: Implement TaskRepository for personal, study, and work tasks. Each repository class provides implementations for creating, retrieving, updating, and deleting tasks specific to its type.
+- **Implementations**
+
+	- `PersonalTaskInMemoryRepository`, `StudyTaskInMemoryRepository`, and `WorkTaskInMemoryRepository`: Implement TaskRepository for personal, study, and work tasks. Each repository class provides implementations for creating, retrieving, updating, and deleting tasks specific to its type.
 
 
 #### Service Layer: 
@@ -76,7 +78,9 @@ Implements application logic, including operations for task manipulation. Intera
 
 - `TaskService`: Interface for basic CRUD operations on tasks.
 
-- `PersonalTaskService`, `StudyTaskService`, and `WorkTaskService`: Implement TaskService for personal, study, and work tasks, respectively, interacting with the corresponding repository.
+- **Implementations**
+
+	- `PersonalTaskService`, `StudyTaskService`, and `WorkTaskService`: Implement TaskService for personal, study, and work tasks, respectively, interacting with the corresponding repository.
 
 
 
