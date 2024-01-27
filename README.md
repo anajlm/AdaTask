@@ -124,12 +124,16 @@ Manages user interaction via the console. Task-specific controllers process user
 
 2. Upon running the application, you will be presented with a menu to select the task category (personal, study, or work).
 
-<p align="center"> <img src="img/main_menu.png" alt="Main Menu" ></p>
+<p align="center"><img src="img/main_menu.png" alt="Main Menu" ></p>
  
 3. Choose an option to view tasks, create a new task, edit an existing task, or delete a task.
 Follow the on-screen instructions to perform the desired operation.
 
-![Work Task Menu](img/work_task_menu.png) ![Study Task Menu](img/study_task_menu.png) ![Personal Task Menu](img/personal_task_menu.png)
+<p align="center">
+	<img src="img/work_task_menu.png" alt="Work Task Menu" >
+	<img src="iimg/study_task_menu.png" alt="Study Task Menu" >
+	<img src="img/personal_task_menu.png" alt="Personal Task Menu" >
+</p>
 
 
 ## Dependencies 
