@@ -1,40 +1,40 @@
-package br.com.ada.repository.inmemory.impl;
+package br.com.ada.repository.impl.inmemory;
 
-import br.com.ada.domain.StudyTask;
+import br.com.ada.domain.WorkTask;
 import br.com.ada.repository.TaskRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudyTaskInMemoryRepository implements TaskRepository<StudyTask, Integer> {
+public class WorkTaskInMemoryRepository implements TaskRepository<WorkTask, Integer> {
 
-    private final List<StudyTask> tasks;
+    private final List<WorkTask> tasks;
     private Integer nextId = 1;
 
-    public StudyTaskInMemoryRepository(){
+    public WorkTaskInMemoryRepository() {
         this.tasks = new ArrayList<>();
     }
 
     @Override
-    public void createTask(StudyTask task) {
+    public void createTask(WorkTask task) {
         task.setId(nextId);
         nextId++;
-        this.tasks.add(task);
+        tasks.add(task);
     }
 
     @Override
-    public StudyTask getTaskById(Integer id) {
+    public WorkTask getTaskById(Integer id) {
         int index = findTaskIndexById(id);
         return this.tasks.get(index);
     }
 
     @Override
-    public List<StudyTask> getAllTasks() {
+    public List<WorkTask> getAllTasks() {
         return this.tasks;
     }
 
     @Override
-    public void updateTask(StudyTask task) {
+    public void updateTask(WorkTask task) {
         int index = findTaskIndexById(task.getId());
         tasks.set(index, task);
     }

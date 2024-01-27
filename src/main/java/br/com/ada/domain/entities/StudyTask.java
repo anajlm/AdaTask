@@ -1,14 +1,15 @@
 package br.com.ada.domain;
 
+import br.com.ada.domain.contracts.FilterableTask;
 import br.com.ada.domain.enums.Priority;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-public class StudyTask extends TaskWithDeadline {
+public class StudyTask extends TaskWithDeadline implements FilterableTask {
 
     private String subject;
 
-    public StudyTask(String description, Priority priority, Date deadline, String subject) {
+    public StudyTask(String description, Priority priority, LocalDate deadline, String subject) {
         super(description, priority, deadline);
         this.subject = subject;
     }

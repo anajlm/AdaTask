@@ -1,10 +1,11 @@
 package br.com.ada.domain;
 
+import br.com.ada.domain.contracts.FilterableTask;
 import br.com.ada.domain.enums.Priority;
 
 import java.time.LocalDate;
 
-public class WorkTask extends TaskWithDeadline {
+public class WorkTask extends TaskWithDeadline implements FilterableTask {
 
     private String client;
 

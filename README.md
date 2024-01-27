@@ -26,11 +26,19 @@ Defines the structure and business rules for tasks.
 
 - `BaseTask`: Base entity containing common attributes.
 - `TaskWithDeadline`: Abstract class extending `BaseTask` for tasks with a deadline. It introduces the `deadline` attribute, allowing tasks to have a specific date by which they need to be completed.
-- `PersonalTask`: Inherits from `BaseTask` for personal tasks.
-- `StudyTask`: Extends `TaskWithDeadline` and represents study tasks. It includes a `subject` attribute, indicating the subject of study.
-- `WorkTask`: Extends `TaskWithDeadline` and represents work tasks. It includes a `client` attribute, indicating the client associated with the task.
 
-
+	- **Contracts**
+		- `FilterableTask`: Interface defining tasks that can be filtered based on specific criteria.
+	
+	- **Enums**
+		- Priority: defines the priority levels that can be assigned to tasks: LOW, MEDIUM, and HIGH.
+	
+	- **Entities**
+		- `PersonalTask`: Inherits from `BaseTask` for personal tasks.
+		- `StudyTask`: Extends `TaskWithDeadline` and and implements FilterableTask. Represents study tasks. It includes a `subject` attribute, indicating the subject of study.
+		- `WorkTask`: Extends `TaskWithDeadline` and implements FilterableTask. Represents work tasks. It includes a `client` attribute, indicating the client associated with the task.
+	
+	
 **Repository Layer**: 
 
 Manages data storage using in-memory lists for simplicity.
@@ -54,9 +62,18 @@ Manages user interaction via the console. Task-specific controllers process user
 
 - `TaskController`: Interface that provides methods for basic task operations such as creating, deleting, editing, and displaying tasks. It also includes a method for running the task-specific menu.
 
-- `PersonalTaskControllerImpl`, `StudyTaskControllerImpl`, and `WorkTaskControllerImpl`: Implement the `TaskController` interface, providing task-specific implementations for task operations. Each task controller displays a specific menu for its type of task.
 
-- `ApplicationController`: Serves as the main controller, managing the overall flow of the application. It interacts with the user, displays the main menu, and delegates control to the specific task controllers based on user input.
+- TaskWithDeadlineController: Interface extending TaskController, specifically for tasks with deadlines. It includes methods for handling deadline-related operations.
+- FilterableTaskController: Interface for controllers that support task filtering based on specific criteria.
+- FilterableTaskWithDeadlineController: Extends TaskWithDeadlineController and FilterableTaskController, combining functionality for tasks with deadlines and filtering capabilities.
+
+- `PersonalTaskController`: Implements the `TaskController` interface, providing task-specific implementations for task operations. 
+
+
+- `StudyTaskController` and `WorkTaskController`: Implements FilterableTaskWithDeadlineController for managing work tasks with deadlines. It supports filtering tasks by client and includes operations for task manipulation.
+
+
+- `MainController`: Serves as the main controller, managing the overall flow of the application. It interacts with the user, displays the main menu, and delegates control to the specific task controllers based on user input.
 
 
 ### Application Flow
@@ -73,11 +90,26 @@ Manages user interaction via the console. Task-specific controllers process user
 - Demonstrates the application of inheritance and generics in data structures and task manipulation operations.
 
 
+## Deployment
+
+
+### Deployment with in-memory repository
+
+
+### Deployment with PostgreSQL
+
+- Execute docker-compose up which will setup and deploy DB.
+
+
+
 ## Usage
 
 Ensure you have [IntelliJ IDEA](https://www.jetbrains.com/idea/) installed on your system. Open the project in IntelliJ and run the application by executing the main class. 
 
-Follow the on-screen instructions to interact with the application.
+Upon running the application, you will be presented with a menu to select the task category (personal, study, or work).
+
+Choose an option to view tasks, create a new task, edit an existing task, or delete a task.
+Follow the on-screen instructions to perform the desired operation.
 
 
 

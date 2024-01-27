@@ -1,4 +1,4 @@
-package br.com.ada.controller;
+package br.com.ada.utils;
 
 import java.util.Scanner;
 
