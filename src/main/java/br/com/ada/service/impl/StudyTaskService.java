@@ -23,22 +23,26 @@ public class StudyTaskService implements FilterableTaskService<StudyTask, Intege
 
     @Override
     public void editTask(StudyTask task) {
+        ensureTaskExists(task.getId());
         studyTaskRepository.updateTask(task);
     }
 
     @Override
     public void deleteTask(Integer id) {
+        ensureTaskExists(id);
         this.studyTaskRepository.deleteTask(id);
     }
 
     @Override
     public StudyTask getTaskById(Integer id) {
+        ensureTaskExists(id);
         return studyTaskRepository.getTaskById(id);
     }
 
     @Override
     public List<StudyTask> getAllTasks() {
         var tasks = studyTaskRepository.getAllTasks();
+        // Sort the tasks by deadline
         Collections.sort(tasks);
         return tasks;
     }

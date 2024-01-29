@@ -43,6 +43,7 @@ public class WorkTaskService implements TaskService<WorkTask, Integer>, Filterab
     @Override
     public List<WorkTask> getAllTasks() {
         var tasks = workTaskRepository.getAllTasks();
+        // Sort the tasks by deadline
         Collections.sort(tasks);
         return tasks;
     }

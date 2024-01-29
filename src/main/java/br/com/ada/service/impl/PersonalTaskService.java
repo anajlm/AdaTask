@@ -21,16 +21,19 @@ public class PersonalTaskService implements TaskService<PersonalTask, Integer> {
 
     @Override
     public void editTask(PersonalTask task) {
+        ensureTaskExists(task.getId());
         personalTaskRepository.updateTask(task);
     }
 
     @Override
     public void deleteTask(Integer id) {
+        ensureTaskExists(id);
         personalTaskRepository.deleteTask(id);
     }
 
     @Override
     public PersonalTask getTaskById(Integer id) {
+        ensureTaskExists(id);
         return personalTaskRepository.getTaskById(id);
     }
 
