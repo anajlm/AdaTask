@@ -11,21 +11,29 @@ import br.com.ada.util.DataPopulator;
 
 import java.util.Scanner;
 
+/**
+ * The main controller class for the AdaTask application.
+ * This class instantiates and manages the task controllers, repositories, and services.
+ */
 public class MainController {
     public static void main(String[] args) {
 
+        // Instantiates Work Task Controller
         TaskRepository<WorkTask, Integer> workTaskRepository = new WorkTaskInMemoryRepository();
         FilterableTaskService<WorkTask, Integer, String> workTaskService = new WorkTaskService(workTaskRepository);
         FilterableTaskWithDeadlineController<WorkTask> workTaskController = new WorkTaskController(workTaskService);
 
+        // Instantiates Study Task Controller
         TaskRepository<StudyTask, Integer> studyTaskRepository = new StudyTaskInMemoryRepository();
         FilterableTaskService<StudyTask, Integer, String> studyTaskService = new StudyTaskService(studyTaskRepository);
         FilterableTaskWithDeadlineController<StudyTask> studyTaskController = new StudyTaskController(studyTaskService);
 
+        // Instantiates Personal Task Controller
         TaskRepository<PersonalTask, Integer> personalTaskRepository = new PersonalTaskInMemoryRepository();
         TaskService<PersonalTask, Integer> personalTaskService = new PersonalTaskService(personalTaskRepository);
-        TaskController<StudyTask> personalTaskController = new PersonalTaskController(personalTaskService);
+        TaskController<PersonalTask> personalTaskController = new PersonalTaskController(personalTaskService);
 
+        // Populates repositories with some tasks for testing purposes
         DataPopulator dataPopulator = new DataPopulator(workTaskRepository, studyTaskRepository, personalTaskRepository);
         dataPopulator.populateRepository();
 
