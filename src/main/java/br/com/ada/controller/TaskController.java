@@ -38,9 +38,9 @@ public interface TaskController<T extends BaseTask> {
                 priority = Priority.HIGH;
                 break;
             default:
-                throw new IllegalArgumentException("Invalid priority choice.");            }
+                throw new IllegalArgumentException("Invalid priority choice.");
+        }
 
-        scanner.nextLine();
         return priority;
     }
 

@@ -9,10 +9,12 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Controller implementation for managing study tasks.
+ */
 public class StudyTaskController implements FilterableTaskWithDeadlineController<StudyTask> {
 
     private final FilterableTaskService<StudyTask, Integer, String> studyTaskService;
-
     private Scanner scanner;
 
     public StudyTaskController(FilterableTaskService<StudyTask, Integer, String> studyTaskService) {
@@ -46,7 +48,7 @@ public class StudyTaskController implements FilterableTaskWithDeadlineController
     @Override
     public void displayTasks() {
         System.out.println();
-        System.out.println("==== Display Work Tasks ====");
+        System.out.println("==== Display Study Tasks ====");
 
         List<StudyTask> tasks = applyFilter();
 

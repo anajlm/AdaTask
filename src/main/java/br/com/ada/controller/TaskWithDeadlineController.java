@@ -6,6 +6,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Interface defining the contract for task controllers that handle tasks with deadlines.
+ *
+ * @param <T> The type of tasks that this controller manages, which extends the `TaskWithDeadline` interface.
+ */
 public interface TaskWithDeadlineController<T extends TaskWithDeadline> extends TaskController<T> {
     default LocalDate readDeadline(){
         String date = userInput.readString("Enter the deadline (dd/MM/yyyy): ");

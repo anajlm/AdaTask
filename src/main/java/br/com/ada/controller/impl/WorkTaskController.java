@@ -9,6 +9,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+
+/**
+ * Controller implementation for managing work tasks.
+ */
 public class WorkTaskController implements FilterableTaskWithDeadlineController<WorkTask> {
 
     private final FilterableTaskService<WorkTask, Integer, String> workTaskService;

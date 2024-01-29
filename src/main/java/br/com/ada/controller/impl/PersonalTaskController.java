@@ -1,14 +1,16 @@
 package br.com.ada.controller.impl;
 
 import br.com.ada.controller.TaskController;
-import br.com.ada.domain.BaseTask;
 import br.com.ada.domain.entities.PersonalTask;
 import br.com.ada.domain.enums.Priority;
 import br.com.ada.service.TaskService;
 
 import java.util.Scanner;
 
-public class PersonalTaskController implements TaskController {
+/**
+ * Controller implementation for managing personal tasks.
+ */
+public class PersonalTaskController implements TaskController<PersonalTask> {
 
     private final TaskService<PersonalTask, Integer> personalTaskService;
 
@@ -56,7 +58,7 @@ public class PersonalTaskController implements TaskController {
     }
 
     @Override
-    public void printTask(BaseTask task) {
+    public void printTask(PersonalTask task) {
         System.out.println(task.getPriority().getTextColor() + task.getId() + ": " + task.getDescription() + "\u001B[0m");
     }
 
@@ -84,6 +86,9 @@ public class PersonalTaskController implements TaskController {
 
             String description = readDescription();
             Priority priority = readPriority();
+
+            taskToEdit.setDescription(description);
+            taskToEdit.setPriority(priority);
 
             personalTaskService.editTask(taskToEdit);
             System.out.println("Personal Task edited successfully.");
