@@ -25,7 +25,10 @@ public class StudyTaskInMemoryRepository implements TaskRepository<StudyTask, In
     @Override
     public StudyTask getTaskById(Integer id) {
         int index = findTaskIndexById(id);
-        return this.tasks.get(index);
+        if (index != -1) {
+            return this.tasks.get(index);
+        }
+        return null;
     }
 
     @Override

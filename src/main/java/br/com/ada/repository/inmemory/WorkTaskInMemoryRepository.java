@@ -25,7 +25,10 @@ public class WorkTaskInMemoryRepository implements TaskRepository<WorkTask, Inte
     @Override
     public WorkTask getTaskById(Integer id) {
         int index = findTaskIndexById(id);
-        return this.tasks.get(index);
+        if (index != -1) {
+            return this.tasks.get(index);
+        }
+        return null;
     }
 
     @Override
