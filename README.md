@@ -23,11 +23,22 @@ AdaTask is a simple console application for managing tasks. It allows users to c
 
 ## Features
 
-- **Task Creation**: Add new tasks with details such as title, description, deadline, etc.
-- **Task Editing**: Update details of existing tasks
-- **Task Removal**: Delete existing tasks.
-- **Task Viewing**: List all tasks or filter by specific criteria.
 
+- **Task Management:** AdaTask enables users to efficiently manage their tasks by providing functionalities for creating, editing, and deleting tasks.
+
+- **Task Categorization:** Users can categorize tasks into personal, work, or study categories, allowing for better organization and prioritization.
+
+- **Deadline Management:** AdaTask supports tasks with deadlines, enabling users to set specific due dates for their tasks.
+
+- **Priority Levels:** Task items are color-coded based on their priority levels to provide users with quick visual cues. Tasks with a high priority level are displayed in red, medium priority tasks appear in yellow, while low priority tasks are shown in green, allowing users to easily distinguish between different task priorities.
+
+- **Filtering:** Users can filter tasks based on specific criteria, allowing for quick access to specific tasks.
+
+- **Sorting:** AdaTask offers a convenient sorting mechanism that arranges tasks based on their deadlines. Tasks with deadline are sorted chronologically, with those closest to their deadlines appearing at the top of the list. This feature enables users to quickly identify impending deadlines and prioritize their tasks accordingly, enhancing efficiency and task management effectiveness.
+
+- **User-Friendly Interface:** The console-based interface of AdaTask provides a simple and intuitive user experience, allowing users to interact with the application seamlessly.
+
+- **Cross-Platform Compatibility:** Being a console application, AdaTask is platform-independent and can be used on any operating system that supports Java.
 
 
 ## Technical Implementation
@@ -86,7 +97,7 @@ Implements application logic, including operations for task manipulation. Intera
 Manages user interaction via the console. Task-specific controllers process user input, execute corresponding actions, and display results in the console. They interact with the Service layer to perform tasks like creating, editing, deleting, and viewing tasks. Each controller is designed to handle a specific task type.
 
 
-- **Contracts:**: 
+- **Contracts:**
 	- `TaskController`: Interface that provides methods for basic task operations such as creating, deleting, editing, and displaying tasks. It also includes a method for running the task-specific menu.
 
 	- `TaskWithDeadlineController`: Interface extending TaskController, specifically for tasks with deadlines. It includes methods for handling deadline-related operations.
@@ -139,7 +150,6 @@ Follow the on-screen instructions to perform the desired operation.
 	<img src="img/study_task_menu.png" alt="Study Task Menu" >
 	<img src="img/personal_task_menu.png" alt="Personal Task Menu" >
 </p>
-
 
 
 
