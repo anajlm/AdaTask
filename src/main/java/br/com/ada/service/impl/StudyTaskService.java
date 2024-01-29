@@ -50,7 +50,7 @@ public class StudyTaskService implements FilterableTaskService<StudyTask, Intege
     @Override
     public void ensureTaskExists(Integer id) {
         if (studyTaskRepository.getTaskById(id) == null) {
-            throw new IllegalArgumentException("Work task with ID " + id + " not found.");
+            throw new IllegalArgumentException("Study task with ID " + id + " not found.");
         }
     }
 

@@ -45,7 +45,7 @@ public class PersonalTaskService implements TaskService<PersonalTask, Integer> {
     @Override
     public void ensureTaskExists(Integer id) {
         if (personalTaskRepository.getTaskById(id) == null) {
-            throw new IllegalArgumentException("Work task with ID " + id + " not found.");
+            throw new IllegalArgumentException("Personal task with ID " + id + " not found.");
         }
     }
 
